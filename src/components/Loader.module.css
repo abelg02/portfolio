@@ -1,0 +1,77 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 26px;
+  background: var(--bg);
+  transition: clip-path 0.65s var(--ease);
+  clip-path: inset(0 0 0 0);
+}
+
+.leaving {
+  clip-path: inset(0 0 100% 0);
+}
+
+.mark {
+  display: flex;
+  gap: 4px;
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  overflow: hidden;
+}
+
+.letter {
+  display: inline-block;
+  animation: rise 0.7s var(--ease) both;
+}
+
+.letter:nth-child(2) {
+  animation-delay: 0.08s;
+  color: var(--accent);
+  font-style: normal;
+}
+
+.bar {
+  width: 160px;
+  height: 2px;
+  background: var(--line-2);
+  overflow: hidden;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--text);
+  animation: fill 0.95s var(--ease) both;
+}
+
+.caption {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}

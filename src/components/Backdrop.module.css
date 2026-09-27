@@ -1,0 +1,22 @@
+/* Fondo tenue: sin JavaScript o con movimiento reducido se ve la imagen quieta */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--backdrop-opacity, 0.18);
+  background:
+    radial-gradient(ellipse at center, transparent 30%, var(--bg) 95%),
+    url('/media/fondo/obsidiana-sm.webp') center / cover no-repeat;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.6s var(--ease);
+}
+
+.canvas.on {
+  opacity: 1;
+}

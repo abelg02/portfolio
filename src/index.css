@@ -1,0 +1,285 @@
+@import '@fontsource-variable/schibsted-grotesk/wght.css';
+@import '@fontsource-variable/geist-mono/wght.css';
+
+:root {
+  --bg: #0c0c0b;
+  --bg-2: #121211;
+  --bg-3: #1a1a18;
+  --line: rgb(237 235 229 / 0.09);
+  --line-2: rgb(237 235 229 / 0.16);
+  --text: #edebe5;
+  --muted: #9c998f;
+  --faint: #66635b;
+  --accent: #ff5a24;
+  --accent-ink: #120602;
+
+  --font: 'Schibsted Grotesk Variable', system-ui, sans-serif;
+  --mono: 'Geist Mono Variable', ui-monospace, monospace;
+
+  --pad: clamp(20px, 4vw, 56px);
+  --max: 1440px;
+  --radius: 6px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: dark;
+  font-family: var(--font);
+  font-size: 16px;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 90px;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  /* sin fondo propio: el negro lo pone html y así se ve el fondo animado */
+  touch-action: manipulation;
+}
+
+/* Grano de película por encima de todo: quita lo "digital" sin molestar */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip {
+  position: fixed;
+  top: -60px;
+  left: 16px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: top 0.2s;
+}
+
+.skip:focus {
+  top: 16px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  font-weight: 600;
+  font-size: 0.98rem;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    color 0.4s var(--ease),
+    border-color 0.4s var(--ease);
+}
+
+/* Relleno que sube al pasar por encima */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--text);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease);
+}
+
+.btn:hover::before {
+  transform: none;
+}
+
+.btn:hover {
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.btn svg {
+  transition: transform 0.5s var(--ease);
+}
+
+.btn:hover svg {
+  transform: translateX(4px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 11px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Revelado al entrar en pantalla: el contenido siempre es legible sin JavaScript */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+  transition-delay: calc(var(--d, 0) * 80ms);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-3);
+  border-radius: 10px;
+  border: 2px solid var(--bg);
+}
+
+/* Mientras está el telón de carga, las entradas animadas esperan */
+html.is-loading main * {
+  animation-play-state: paused !important;
+}
+
+/* Mientras está el telón de carga, las entradas animadas esperan */
+html.is-loading main * {
+  animation-play-state: paused !important;
+}
+
+/* Sin cursivas: los énfasis solo cambian de color */
+em {
+  font-style: normal;
+}

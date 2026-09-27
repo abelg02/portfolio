@@ -1,0 +1,58 @@
+.page {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 28px;
+  min-height: 100svh;
+  padding-top: 120px;
+  padding-bottom: 80px;
+}
+
+.title {
+  max-width: 13ch;
+  margin: 0;
+  font-size: clamp(3rem, 9vw, 8rem);
+  font-weight: 650;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.title em {
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.text {
+  max-width: 44ch;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.list a {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  font-weight: 500;
+  transition:
+    border-color 0.3s,
+    color 0.3s;
+}
+
+.list a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}

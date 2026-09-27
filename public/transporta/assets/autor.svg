@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" width="480" height="600">
+  <rect width="480" height="600" fill="#E9E4D8"/>
+  <rect x="24" y="24" width="432" height="552" fill="none" stroke="#CFC8B8" stroke-width="1"/>
+  <text x="60" y="400" font-family="'Archivo', 'Arial Narrow', sans-serif" font-weight="900" font-size="300" letter-spacing="-10" fill="#16181D">A</text>
+  <rect x="300" y="354" width="46" height="46" fill="#16181D"/>
+  <text x="60" y="470" font-family="'JetBrains Mono', Consolas, monospace" font-size="20" fill="#4A4F59">Java  =&gt;  ABAP</text>
+  <text x="60" y="532" font-family="'JetBrains Mono', Consolas, monospace" font-size="16" letter-spacing="2" fill="#4A4F59">DAM · SAP ABAP</text>
+</svg>

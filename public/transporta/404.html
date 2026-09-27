@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es" class="sin-js" data-tema-activo="noche">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página no encontrada · Transporta</title>
+  <meta name="description" content="La página que buscas no existe o se ha transportado a otro sistema.">
+  <meta name="theme-color" content="#0B0C0F">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" data-favicon>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/error.css">
+  <script src="js/nucleo.js" defer></script>
+</head>
+<body>
+  <a class="salto" href="#contenido">Saltar al contenido</a>
+
+  <div class="grano" aria-hidden="true"></div>
+  <div class="progreso" aria-hidden="true"><div class="progreso__barra"></div></div>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera__interior">
+      <a class="logo" translate="no" href="index.html" aria-label="Transporta, ir a la página principal">transporta<span class="logo__punto">.</span></a>
+      <nav class="nav" aria-label="Principal">
+        <button class="nav__boton" type="button" aria-expanded="false" aria-controls="nav-menu"><span class="nav__boton-texto">Menú</span><span class="nav__boton-lineas" aria-hidden="true"><span></span><span></span></span></button>
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__lista">
+            <li><a class="nav__enlace" href="index.html#mapa"><span class="nav__num" aria-hidden="true">03</span>Equivalencias</a></li>
+            <li><a class="nav__enlace" href="index.html#errores"><span class="nav__num" aria-hidden="true">05</span>Errores</a></li>
+            <li><a class="nav__enlace" href="index.html#snippets"><span class="nav__num" aria-hidden="true">06</span>Snippets</a></li>
+            <li><a class="nav__enlace" href="index.html#ruta"><span class="nav__num" aria-hidden="true">07</span>Ruta</a></li>
+            <li><a class="nav__enlace" href="index.html#transacciones"><span class="nav__num" aria-hidden="true">09</span>Transacciones</a></li>
+          </ul>
+          <div class="nav__pie">
+            <a class="boton boton--primario boton--ancho" href="index.html#test">Hacer el test de nivel</a>
+            <p class="nav__contacto">Guía gratuita · sin registro · sin cookies</p>
+          </div>
+        </div>
+      </nav>
+      <a class="boton boton--primario boton--compacto cabecera__cta" href="index.html#test" data-magnetico>Test de nivel</a>
+    </div>
+  </header>
+
+  <main id="contenido" data-tema="noche">
+    <section class="error contenedor" aria-labelledby="error-titulo">
+      <p class="error__codigo" aria-hidden="true">4<span>0</span>4</p>
+      <div class="error__rejilla">
+        <div class="error__texto">
+          <p class="etiqueta">ST22 · Error en tiempo de ejecución</p>
+          <h1 id="error-titulo">Esta página no llegó <em class="clave">a producción</em></h1>
+          <p>La dirección que buscas no existe o se ha transportado a otro sistema. No es culpa tuya: le pasa hasta al mejor transporte.</p>
+          <a class="boton boton--primario" href="index.html" data-magnetico>Volver a la guía <span class="boton__flecha" aria-hidden="true">→</span></a>
+        </div>
+        <div class="volcado" translate="no">
+          <p class="volcado__barra">Runtime Error · PAGE_NOT_FOUND</p>
+          <dl class="volcado__cuerpo">
+            <div><dt>Excepción</dt><dd class="volcado__java">CX_SY_PAGE_NOT_FOUND</dd></div>
+            <div><dt>Programa</dt><dd>ZTRANSPORTA_WEB</dd></div>
+            <div><dt>Sistema</dt><dd>PRD · mandante 100</dd></div>
+            <div><dt>Qué ha pasado</dt><dd>La orden de transporte de esta página nunca salió de DEV.</dd></div>
+            <div><dt>Qué puedes hacer</dt><dd class="volcado__abap">zcl_visitante=&gt;volver_al_inicio( ).</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie" data-tema="noche">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div class="pie__marca">
+          <p class="pie__lema">De Java a ABAP, <em class="clave">línea a línea</em>.</p>
+          <a class="boton boton--primario" href="index.html#inicio" data-magnetico>Volver arriba <span class="boton__flecha" aria-hidden="true">↑</span></a>
+        </div>
+        <div>
+          <h2 class="pie__titulo">Guía</h2>
+          <ul class="pie__lista">
+            <li><a href="index.html#traduccion">La traducción</a></li>
+            <li><a href="index.html#mapa">Equivalencias</a></li>
+            <li><a href="index.html#tipos">Chuleta de tipos</a></li>
+            <li><a href="index.html#errores">Errores típicos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="pie__titulo">Practicar</h2>
+          <ul class="pie__lista">
+            <li><a href="index.html#snippets">Snippets</a></li>
+            <li><a href="index.html#transacciones">Transacciones</a></li>
+            <li><a href="index.html#ruta">La ruta</a></li>
+            <li><a href="index.html#test">Test de nivel</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="pie__titulo">Autor</h2>
+          <ul class="pie__lista">
+            <li><a href="index.html#autor">Quién escribe esto</a></li>
+            <li><a href="https://www.linkedin.com/in/abel-gonzalez-guerra/" target="_blank" rel="noopener">LinkedIn<span class="visualmente-oculto"> (se abre en otra pestaña)</span></a></li>
+            <li><a href="index.html#compartir">Compartir la guía</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="pie__gigante" translate="no" aria-hidden="true" data-fuente-variable>transporta<span>.</span></p>
+      <div class="pie__legal">
+        <p>Guía personal y gratuita. Sin cookies, sin registro y sin seguimiento.</p>
+        <p>SAP, ABAP y S/4HANA son marcas registradas de SAP SE. Java es una marca registrada de Oracle. Este proyecto no está afiliado a ninguna de las dos empresas.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

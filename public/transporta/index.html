@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="es" class="sin-js" data-tema-activo="noche">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transporta · De Java a ABAP, la guía de campo</title>
+  <meta name="description" content="Guía gratuita para programadores Java que llegan a SAP ABAP: equivalencias, errores típicos con su solución, snippets listos para copiar, transacciones y una ruta de aprendizaje de cero a experto.">
+  <meta name="theme-color" content="#0B0C0F">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="De Java a ABAP · La guía de campo">
+  <meta property="og:description" content="Equivalencias Java y ABAP, errores típicos resueltos, snippets y transacciones. Gratis y sin registro.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" data-favicon>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/efectos.css">
+  <link rel="stylesheet" href="css/guia.css">
+  <script src="js/nucleo.js" defer></script>
+  <script src="js/particulas.js" defer></script>
+  <script src="js/escenas.js" defer></script>
+  <script src="js/guia.js" defer></script>
+  <script src="js/test.js" defer></script>
+</head>
+<body>
+  <a class="salto" href="#contenido">Saltar al contenido</a>
+
+  <div class="cargador" aria-hidden="true">
+    <div class="cargador__caja">
+      <p class="cargador__logo">transporta<span class="cargador__punto">.</span></p>
+      <ol class="cargador__log">
+        <li>&gt; leyendo Pedidos.java</li>
+        <li>&gt; traduciendo a ABAP</li>
+        <li>&gt; activando objetos <span class="cargador__ok">✓</span></li>
+      </ol>
+      <div class="cargador__barra"><span></span></div>
+    </div>
+  </div>
+
+  <div class="grano" aria-hidden="true"></div>
+  <div class="progreso" aria-hidden="true"><div class="progreso__barra"></div></div>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera__interior">
+      <a class="logo" translate="no" href="#inicio" aria-label="Transporta, ir al inicio">transporta<span class="logo__punto">.</span></a>
+      <nav class="nav" aria-label="Principal">
+        <button class="nav__boton" type="button" aria-expanded="false" aria-controls="nav-menu"><span class="nav__boton-texto">Menú</span><span class="nav__boton-lineas" aria-hidden="true"><span></span><span></span></span></button>
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__lista">
+            <li><a class="nav__enlace" href="#mapa"><span class="nav__num" aria-hidden="true">03</span>Equivalencias</a></li>
+            <li><a class="nav__enlace" href="#errores"><span class="nav__num" aria-hidden="true">05</span>Errores</a></li>
+            <li><a class="nav__enlace" href="#snippets"><span class="nav__num" aria-hidden="true">06</span>Snippets</a></li>
+            <li><a class="nav__enlace" href="#ruta"><span class="nav__num" aria-hidden="true">07</span>Ruta</a></li>
+            <li><a class="nav__enlace" href="#transacciones"><span class="nav__num" aria-hidden="true">09</span>Transacciones</a></li>
+          </ul>
+          <div class="nav__pie">
+            <a class="boton boton--primario boton--ancho" href="#test">Hacer el test de nivel</a>
+            <p class="nav__contacto">Guía gratuita · sin registro · sin cookies</p>
+          </div>
+        </div>
+      </nav>
+      <a class="boton boton--primario boton--compacto cabecera__cta" href="#test" data-magnetico>Test de nivel</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- Hero · efecto estrella: partículas Java → ABAP -->
+    <section class="hero" id="inicio" data-tema="noche" aria-labelledby="hero-titulo">
+      <div class="hero__fijo">
+        <canvas class="hero__lienzo" aria-hidden="true"></canvas>
+        <div class="contenedor hero__contenido">
+          <p class="etiqueta hero__etiqueta"><span class="punto-vivo" aria-hidden="true"></span>Guía abierta · Gratis · Sin registro</p>
+          <h1 class="hero__titulo" id="hero-titulo">
+            <span class="hero__linea"><span>Ya programas</span></span>
+            <span class="hero__linea"><span>en <span class="palabra-java">Java</span>.</span></span>
+            <span class="hero__linea"><span>Ahora, tradúcelo</span></span>
+            <span class="hero__linea"><span>a <em class="clave"><span class="visualmente-oculto">ABAP</span><span aria-hidden="true" data-descifrar>ABAP</span></em>.</span></span>
+          </h1>
+          <div class="hero__pie">
+            <p class="hero__subtitulo">La guía de campo que me habría ahorrado semanas: equivalencias entre Java y ABAP, errores típicos con su solución, snippets listos para copiar y las transacciones que vas a usar cada día.</p>
+            <div class="hero__acciones">
+              <a class="boton boton--primario" href="#traduccion" data-magnetico>Empezar la guía <span class="boton__flecha" aria-hidden="true">→</span></a>
+              <a class="boton boton--secundario" href="#errores" data-magnetico>Ir a los errores</a>
+            </div>
+            <p class="hero__datos">12 equivalencias · 8 errores resueltos · 8 snippets · 20 transacciones · 1 test de nivel</p>
+          </div>
+          <div class="sello hero__sello" aria-hidden="true">
+            <svg viewBox="0 0 200 200" class="sello__giro">
+              <defs><path id="sello-circulo" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+              <text><textPath href="#sello-circulo" textLength="486" lengthAdjust="spacing">GUÍA ABIERTA · DE JAVA A ABAP · SIN REGISTRO ·</textPath></text>
+            </svg>
+            <span class="sello__centro">=&gt;</span>
+          </div>
+          <p class="hero__pista" aria-hidden="true"><span>Baja despacio</span> Java se reescribe en ABAP</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquesina -->
+    <div class="marquesina" aria-hidden="true">
+      <div class="marquesina__pista">
+        <span>ABAP Cloud</span><span class="marquesina__sep">=&gt;</span><span>RAP</span><span class="marquesina__sep">=&gt;</span><span>CDS View Entities</span><span class="marquesina__sep">=&gt;</span><span>ABAP Unit</span><span class="marquesina__sep">=&gt;</span><span>S/4HANA</span><span class="marquesina__sep">=&gt;</span><span>Eclipse ADT</span><span class="marquesina__sep">=&gt;</span><span>abapGit</span><span class="marquesina__sep">=&gt;</span><span>OData V4</span><span class="marquesina__sep">=&gt;</span>
+      </div>
+    </div>
+
+    <!-- Manifiesto · texto que se rellena al leerlo -->
+    <section class="manifiesto" data-tema="noche" aria-label="Manifiesto">
+      <div class="contenedor">
+        <p class="manifiesto__texto" data-rellenar>Si sabes Java, ya dominas lo difícil: diseñar clases, escribir tests y pensar en capas. Lo que cambia es el dialecto. Esta página es el diccionario para traducir lo que ya sabes a ABAP.</p>
+      </div>
+    </section>
+
+    <!-- 01 · Reescritura fijada -->
+    <section class="reescritura" id="traduccion" data-tema="noche" aria-labelledby="reescritura-titulo">
+      <div class="reescritura__fijo">
+        <div class="contenedor reescritura__rejilla">
+          <div class="reescritura__texto">
+            <p class="etiqueta">01 / La traducción</p>
+            <h2 id="reescritura-titulo">Mismo programa. <em class="clave">Otro lenguaje.</em></h2>
+            <p class="reescritura__entradilla">Baja despacio: cada línea de Java se reescribe en su equivalente ABAP. Así se lee el resto de la guía.</p>
+            <ol class="reescritura__notas">
+              <li>variable → declaración en línea con DATA( )</li>
+              <li>repositorio JPA → ABAP SQL</li>
+              <li>for-each → LOOP AT</li>
+              <li>getter → componente con guion</li>
+              <li>método estático → operador =&gt;</li>
+              <li>llave de cierre → ENDIF</li>
+              <li>llave de cierre → ENDLOOP</li>
+              <li>JUnit → ABAP Unit</li>
+            </ol>
+          </div>
+          <div class="reescritura__panel" data-panel-destino>
+            <div class="tabla-codigo">
+              <table class="equivalencias-codigo" translate="no">
+                <caption>Equivalencias línea a línea entre Java y ABAP</caption>
+                <thead>
+                  <tr><th scope="col">Java</th><th scope="col">ABAP</th></tr>
+                </thead>
+                <tbody>
+                  <tr data-nota="variable → declaración en línea con DATA( )"><td><code>String estado = "ABIERTO";</code></td><td><code>DATA(estado) = 'ABIERTO'.</code></td></tr>
+                  <tr data-nota="repositorio JPA → ABAP SQL"><td><code>List&lt;Pedido&gt; pedidos = repo.findAll();</code></td><td><code>SELECT * FROM zpedidos INTO TABLE @DATA(pedidos).</code></td></tr>
+                  <tr data-nota="for-each → LOOP AT"><td><code>for (Pedido p : pedidos) {</code></td><td><code>LOOP AT pedidos INTO DATA(p).</code></td></tr>
+                  <tr data-nota="getter → componente con guion"><td><code>  if (p.getImporte() &gt; 1000) {</code></td><td><code>  IF p-importe &gt; 1000.</code></td></tr>
+                  <tr data-nota="método estático → operador =&gt;"><td><code>    Descuento.aplicar(p);</code></td><td><code>    zcl_descuento=&gt;aplicar( p ).</code></td></tr>
+                  <tr data-nota="llave de cierre → ENDIF"><td><code>  }</code></td><td><code>  ENDIF.</code></td></tr>
+                  <tr data-nota="llave de cierre → ENDLOOP"><td><code>}</code></td><td><code>ENDLOOP.</code></td></tr>
+                  <tr data-nota="JUnit → ABAP Unit"><td><code>assertEquals(3, pedidos.size());</code></td><td><code>cl_abap_unit_assert=&gt;assert_equals( exp = 3 act = lines( pedidos ) ).</code></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · Por qué ABAP · bento -->
+    <section class="seccion" id="por-que-abap" data-tema="papel" aria-labelledby="por-que-abap-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera">
+          <p class="etiqueta">02 / Por qué ABAP</p>
+          <h2 id="por-que-abap-titulo">Miles de empresas tienen que migrar a S/4HANA. <em class="clave">Faltan manos.</em></h2>
+        </div>
+        <ul class="bento">
+          <li class="bento__celda bento__celda--grande revelar">
+            <p class="bento__cifra">2027</p>
+            <p class="bento__texto">El mantenimiento estándar de SAP ECC termina a finales de 2027. Las empresas que siguen en ECC están migrando a S/4HANA, y cada migración necesita gente que programe en ABAP.</p>
+          </li>
+          <li class="bento__celda bento__celda--ancha revelar">
+            <p class="bento__titular">ABAP Cloud</p>
+            <p class="bento__texto">El ABAP que se pide hoy es orientado a objetos, se escribe en Eclipse, tiene tests unitarios y se versiona con Git. Se parece más a tu Java de lo que imaginas.</p>
+          </li>
+          <li class="bento__celda revelar">
+            <p class="bento__titular">Tu base</p>
+            <p class="bento__texto">Diseñar clases, escribir tests y pensar en capas ya lo sabes. La sintaxis se aprende en semanas.</p>
+          </li>
+          <li class="bento__celda bento__celda--codigo revelar">
+            <pre translate="no"><code><span class="c-clave">CLASS</span> zcl_tu_futuro
+  <span class="c-clave">DEFINITION</span> <span class="c-clave">PUBLIC</span>.
+  <span class="c-clave">PUBLIC SECTION</span>.
+    <span class="c-clave">METHODS</span> empezar.
+<span class="c-clave">ENDCLASS</span>.</code></pre>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 03 · Mapa de equivalencias · tarjetas con tilt -->
+    <section class="seccion" id="mapa" data-tema="noche" aria-labelledby="mapa-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera seccion__cabecera--partida">
+          <div>
+            <p class="etiqueta">03 / El diccionario</p>
+            <h2 id="mapa-titulo">Tu mapa de <span class="texto-java">Java</span> a <em class="clave">ABAP</em></h2>
+          </div>
+          <p class="seccion__entradilla">Doce piezas que ya usas en Java y cómo se llaman al otro lado. Pasa el ratón por encima: lo de Java se tacha.</p>
+        </div>
+        <ul class="rejilla-equiv">
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">Spring Boot REST</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">RAP y OData V4</span></p>
+            <p class="tarjeta-equiv__texto">Defines el modelo y el comportamiento; el servicio se expone solo.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">01</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">JPA / Hibernate</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">CDS View Entities</span></p>
+            <p class="tarjeta-equiv__texto">Entidades, asociaciones y anotaciones, pero definidas en la base de datos.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">02</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">JPQL</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">ABAP SQL</span></p>
+            <p class="tarjeta-equiv__texto">SQL dentro del lenguaje, con comprobación en tiempo de compilación.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">03</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">JUnit</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">ABAP Unit</span></p>
+            <p class="tarjeta-equiv__texto">Clases de test, asserts y test doubles. Mismo método, otra sintaxis.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">04</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">Git + Maven</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">abapGit y transportes</span></p>
+            <p class="tarjeta-equiv__texto">Cómo viaja el código de desarrollo a producción en un sistema SAP.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">05</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">IntelliJ</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">Eclipse ADT</span></p>
+            <p class="tarjeta-equiv__texto">Depuración, refactorización y atajos en un IDE de verdad.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">06</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">try / catch</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">TRY. CATCH. ENDTRY.</span></p>
+            <p class="tarjeta-equiv__texto">Excepciones basadas en clases CX_ y RAISING en la firma del método.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">07</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">Streams</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">FOR y REDUCE</span></p>
+            <p class="tarjeta-equiv__texto">Transformar tablas internas sin bucles escritos a mano.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">08</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">ArrayList</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">STANDARD TABLE</span></p>
+            <p class="tarjeta-equiv__texto">Tabla interna con acceso por índice que se recorre con LOOP AT.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">09</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">HashMap</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">HASHED TABLE</span></p>
+            <p class="tarjeta-equiv__texto">Tabla interna con clave única y lectura por clave en tiempo constante.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">10</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">null</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">IS INITIAL / IS BOUND</span></p>
+            <p class="tarjeta-equiv__texto">Las variables nacen con su valor inicial; las referencias se comprueban con IS BOUND.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">11</span>
+          </li>
+          <li class="tarjeta-equiv revelar" data-tilt>
+            <p class="tarjeta-equiv__origen"><span class="tarjeta-equiv__lenguaje">Java</span><span class="tarjeta-equiv__concepto">String.format</span></p>
+            <p class="tarjeta-equiv__destino"><span class="visualmente-oculto">equivale a </span><span class="tarjeta-equiv__lenguaje">ABAP</span><span class="tarjeta-equiv__concepto">String templates</span></p>
+            <p class="tarjeta-equiv__texto"><code translate="no">|Hola { lv_nombre }|</code>, con opciones de formato como DATE o DECIMALS dentro de las llaves.</p>
+            <span class="tarjeta-equiv__num" aria-hidden="true">12</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 04 · Chuleta de tipos -->
+    <section class="seccion" id="tipos" data-tema="papel" aria-labelledby="tipos-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera seccion__cabecera--partida">
+          <div>
+            <p class="etiqueta">04 / Chuleta de tipos</p>
+            <h2 id="tipos-titulo">Cada tipo de Java tiene su <em class="clave">pareja</em></h2>
+          </div>
+          <p class="seccion__entradilla">La tabla que más vas a consultar al principio. La regla de oro: nunca uses coma flotante para dinero, ni en Java ni en ABAP.</p>
+        </div>
+        <div class="tipos revelar">
+          <table class="tipos__tabla">
+            <caption class="visualmente-oculto">Equivalencias de tipos de datos entre Java y ABAP</caption>
+            <thead>
+              <tr><th scope="col">Java</th><th scope="col">ABAP</th><th scope="col">Lo que tienes que saber</th></tr>
+            </thead>
+            <tbody>
+              <tr><td translate="no">int</td><td translate="no">i</td><td>Entero de 4 bytes, igual que en Java.</td></tr>
+              <tr><td translate="no">long</td><td translate="no">int8</td><td>Entero de 8 bytes.</td></tr>
+              <tr><td translate="no">double</td><td translate="no">f</td><td>Coma flotante binaria. Sirve para cálculos científicos, nunca para importes.</td></tr>
+              <tr><td translate="no">BigDecimal</td><td translate="no">p LENGTH 15 DECIMALS 2</td><td>Número empaquetado con decimales exactos: el tipo de los importes. También existe decfloat34.</td></tr>
+              <tr><td translate="no">String</td><td translate="no">string</td><td>Texto de longitud variable.</td></tr>
+              <tr><td translate="no">char[]</td><td translate="no">c LENGTH n</td><td>Texto de longitud fija; lo que sobra se rellena con espacios.</td></tr>
+              <tr><td translate="no">boolean</td><td translate="no">abap_bool</td><td>No hay booleano nativo: abap_true es 'X' y abap_false es un espacio.</td></tr>
+              <tr><td translate="no">LocalDate</td><td translate="no">d</td><td>Fecha de 8 caracteres con formato AAAAMMDD.</td></tr>
+              <tr><td translate="no">LocalTime</td><td translate="no">t</td><td>Hora de 6 caracteres con formato HHMMSS.</td></tr>
+              <tr><td translate="no">byte[]</td><td translate="no">xstring</td><td>Datos binarios de longitud variable.</td></tr>
+              <tr><td translate="no">Pedido</td><td translate="no">REF TO zcl_pedido</td><td>Referencia a objeto. Se instancia con NEW.</td></tr>
+              <tr><td translate="no">List&lt;Pedido&gt;</td><td translate="no">STANDARD TABLE OF</td><td>Tabla interna. También hay SORTED y HASHED según cómo vayas a leerla.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · Errores típicos -->
+    <section class="seccion" id="errores" data-tema="noche" aria-labelledby="errores-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera seccion__cabecera--partida">
+          <div>
+            <p class="etiqueta">05 / Errores típicos</p>
+            <h2 id="errores-titulo">Los dumps que vas a ver <em class="clave">y cómo arreglarlos</em></h2>
+          </div>
+          <p class="seccion__entradilla">Ocho problemas que le pasan a todo el que llega de Java, con su explicación en Java y la solución lista para copiar.</p>
+        </div>
+
+        <div class="filtros" role="group" aria-label="Filtrar errores por tipo">
+          <button class="filtro" type="button" aria-pressed="true" data-filtro="todos">Todos</button>
+          <button class="filtro" type="button" aria-pressed="false" data-filtro="dump">Dumps</button>
+          <button class="filtro" type="button" aria-pressed="false" data-filtro="datos">Datos</button>
+          <button class="filtro" type="button" aria-pressed="false" data-filtro="rendimiento">Rendimiento</button>
+          <button class="filtro" type="button" aria-pressed="false" data-filtro="entorno">Entorno</button>
+          <p class="filtros__cuenta" aria-live="polite"><span data-cuenta-errores>8</span> errores</p>
+        </div>
+
+        <div class="acordeon acordeon--errores">
+          <div class="acordeon__item error-item" data-categoria="dump">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="err-1-boton" type="button" aria-expanded="false" aria-controls="err-1"><span class="error-item__tipo">Dump</span><span class="acordeon__pregunta"><span class="error-item__codigo" translate="no">CX_SY_ITAB_LINE_NOT_FOUND</span>Leer una línea que no existe</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="err-1" role="region" aria-labelledby="err-1-boton"><div class="acordeon__contenido">
+              <div class="error-item__cuerpo">
+                <div class="error-item__texto">
+                  <p><strong>Qué pasa.</strong> Una expresión de tabla como <code translate="no">lt_pedidos[ id = lv_id ]</code> lanza un dump si la línea no existe.</p>
+                  <p><strong>En Java sería</strong> un <code translate="no">get()</code> que lanza una excepción en vez de devolver <code translate="no">null</code>.</p>
+                </div>
+                <div class="codigo">
+                  <div class="codigo__barra"><span>solucion.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Opción 1: valor por defecto si no existe
+DATA(ls_pedido) = VALUE #( lt_pedidos[ id = lv_id ] OPTIONAL ).
+
+" Opción 2: comprobar antes de leer
+IF line_exists( lt_pedidos[ id = lv_id ] ).
+  ls_pedido = lt_pedidos[ id = lv_id ].
+ENDIF.</code></pre>
+                </div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="acordeon__item error-item" data-categoria="dump">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="err-2-boton" type="button" aria-expanded="false" aria-controls="err-2"><span class="error-item__tipo">Dump</span><span class="acordeon__pregunta"><span class="error-item__codigo" translate="no">CX_SY_REF_IS_INITIAL</span>El NullPointerException de ABAP</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="err-2" role="region" aria-labelledby="err-2-boton"><div class="acordeon__contenido">
+              <div class="error-item__cuerpo">
+                <div class="error-item__texto">
+                  <p><strong>Qué pasa.</strong> Llamas a un método sobre una referencia que nunca se instanció.</p>
+                  <p><strong>En Java sería</strong> exactamente un <code translate="no">NullPointerException</code>. La solución es la misma: comprobar antes o instanciar a tiempo.</p>
+                </div>
+                <div class="codigo">
+                  <div class="codigo__barra"><span>solucion.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">IF lo_servicio IS NOT BOUND.
+  lo_servicio = NEW zcl_servicio( ).
+ENDIF.
+
+lo_servicio-&gt;procesar( ).</code></pre>
+                </div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="acordeon__item error-item" data-categoria="rendimiento">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="err-3-boton" type="button" aria-expanded="false" aria-controls="err-3"><span class="error-item__tipo">Rendimiento</span><span class="acordeon__pregunta"><span class="error-item__codigo" translate="no">SELECT dentro de LOOP</span>El N+1 de toda la vida</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="err-3" role="region" aria-labelledby="err-3-boton"><div class="acordeon__contenido">
+              <div class="error-item__cuerpo">
+                <div class="error-item__texto">
+                  <p><strong>Qué pasa.</strong> Una consulta por cada línea del bucle. Con mil pedidos, mil viajes a la base de datos.</p>
+                  <p><strong>En Java sería</strong> el problema N+1 de Hibernate con las relaciones perezosas. Se arregla igual: una sola consulta con JOIN.</p>
+                </div>
+                <div class="codigo">
+                  <div class="codigo__barra"><span>solucion.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Una sola consulta en lugar de una por pedido
+SELECT p~id, p~importe, c~nombre
+  FROM zpedidos AS p
+  INNER JOIN zclientes AS c ON c~id = p~cliente_id
+  INTO TABLE @DATA(lt_resultado).</code></pre>
+                </div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="acordeon__item error-item" data-categoria="datos">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="err-4-boton" type="button" aria-expanded="false" aria-controls="err-4"><span class="error-item__tipo">Datos</span><span class="acordeon__pregunta"><span class="error-item__codigo" translate="no">FOR ALL ENTRIES vacío</span>Te trae todos los registros</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="err-4" role="region" aria-labelledby="err-4-boton"><div class="acordeon__contenido">
+              <div class="error-item__cuerpo">
+                <div class="error-item__texto">
+                  <p><strong>Qué pasa.</strong> Si la tabla de FOR ALL ENTRIES está vacía, el WHERE se ignora y el SELECT lee la tabla entera.</p>
+                  <p><strong>En Java sería</strong> un <code translate="no">WHERE id IN (...)</code> con la lista vacía que, en vez de no devolver nada, lo devuelve todo. Es el error más caro de esta lista.</p>
+                </div>
+                <div class="codigo">
+                  <div class="codigo__barra"><span>solucion.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">IF lt_clientes IS NOT INITIAL.
+  SELECT id, importe
+    FROM zpedidos
+    FOR ALL ENTRIES IN @lt_clientes
+    WHERE cliente_id = @lt_clientes-id
+    INTO TABLE @DATA(lt_pedidos).
+ENDIF.</code></pre>
+                </div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="acordeon__item error-item" data-categoria="datos">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="err-5-boton" type="button" aria-expanded="false" aria-controls="err-5"><span class="error-item__tipo">Datos</span><span class="acordeon__pregunta"><span class="error-item__codigo" translate="no">Ceros a la izquierda</span>El cliente 42 no es el 0000000042</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="err-5" role="region" aria-labelledby="err-5-boton"><div class="acordeon__contenido">
+              <div class="error-item__cuerpo">
+                <div class="error-item__texto">
+                  <p><strong>Qué pasa.</strong> Campos como el número de cliente o de material se guardan con ceros a la izquierda. Si buscas "42", no encuentras nada.</p>
+                  <p><strong>En Java sería</strong> comparar <code translate="no">"42"</code> con <code translate="no">"0000000042"</code>. La conversión ALPHA pone y quita esos ceros.</p>
+                </div>
+                <div class="codigo">
+                  <div class="codigo__barra"><span>solucion.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">DATA lv_cliente TYPE kunnr.
+
+" 42 -&gt; 0000000042
+CALL FUNCTION 'CONVERSION_EXIT_ALPHA_INPUT'
+  EXPORTING input  = lv_entrada
+  IMPORTING output = lv_cliente.
+
+" 0000000042 -&gt; 42, para mostrarlo
+CALL FUNCTION 'CONVERSION_EXIT_ALPHA_OUTPUT'
+  EXPORTING input  = lv_cliente
+  IMPORTING output = lv_entrada.</code></pre>
+                </div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="acordeon__item error-item" data-categoria="datos">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="err-6-boton" type="button" aria-expanded="false" aria-controls="err-6"><span class="error-item__tipo">Datos</span><span class="acordeon__pregunta"><span class="error-item__codigo" translate="no">TYPE f para dinero</span>Los céntimos que desaparecen</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="err-6" role="region" aria-labelledby="err-6-boton"><div class="acordeon__contenido">
+              <div class="error-item__cuerpo">
+                <div class="error-item__texto">
+                  <p><strong>Qué pasa.</strong> El tipo f es coma flotante binaria: 0,1 + 0,2 no da exactamente 0,3 y los redondeos se acumulan.</p>
+                  <p><strong>En Java sería</strong> usar <code translate="no">double</code> para importes en lugar de <code translate="no">BigDecimal</code>. En ABAP, el equivalente de BigDecimal es el tipo p.</p>
+                </div>
+                <div class="codigo">
+                  <div class="codigo__barra"><span>solucion.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">DATA lv_importe TYPE p LENGTH 15 DECIMALS 2.
+
+lv_importe = '19.99' * 3.   " 59.97, sin sorpresas</code></pre>
+                </div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="acordeon__item error-item" data-categoria="datos">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="err-7-boton" type="button" aria-expanded="false" aria-controls="err-7"><span class="error-item__tipo">Datos</span><span class="acordeon__pregunta"><span class="error-item__codigo" translate="no">SY-SUBRC sin comprobar</span>El if que siempre se olvida</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="err-7" role="region" aria-labelledby="err-7-boton"><div class="acordeon__contenido">
+              <div class="error-item__cuerpo">
+                <div class="error-item__texto">
+                  <p><strong>Qué pasa.</strong> SELECT SINGLE y READ TABLE no lanzan excepción si no encuentran nada: dejan un código en SY-SUBRC. Si no lo miras, sigues trabajando con datos vacíos.</p>
+                  <p><strong>En Java sería</strong> no comprobar si un <code translate="no">Optional</code> está vacío antes de usarlo.</p>
+                </div>
+                <div class="codigo">
+                  <div class="codigo__barra"><span>solucion.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">SELECT SINGLE nombre
+  FROM zclientes
+  WHERE id = @lv_id
+  INTO @DATA(lv_nombre).
+
+IF sy-subrc &lt;&gt; 0.
+  RAISE EXCEPTION NEW zcx_cliente_no_existe( ).
+ENDIF.</code></pre>
+                </div>
+              </div>
+            </div></div>
+          </div>
+
+          <div class="acordeon__item error-item" data-categoria="entorno">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="err-8-boton" type="button" aria-expanded="false" aria-controls="err-8"><span class="error-item__tipo">Entorno</span><span class="acordeon__pregunta"><span class="error-item__codigo" translate="no">Objeto inactivo o bloqueado</span>Mis cambios no se ven</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="err-8" role="region" aria-labelledby="err-8-boton"><div class="acordeon__contenido">
+              <div class="error-item__cuerpo">
+                <div class="error-item__texto">
+                  <p><strong>Qué pasa.</strong> En ABAP guardar no es activar. Mientras no actives, el sistema sigue ejecutando la versión anterior. Y si el objeto está en la orden de transporte de otra persona, no podrás cambiarlo.</p>
+                  <p><strong>En Java sería</strong> editar el código y olvidarte de recompilar.</p>
+                </div>
+                <ol class="pasos-lista">
+                  <li><span>01</span><p>Activa con <kbd>Ctrl</kbd> + <kbd>F3</kbd>. Si el objeto depende de otros que también cambiaste, actívalos juntos.</p></li>
+                  <li><span>02</span><p>Mira en SE09 en qué orden de transporte está el objeto y quién la tiene.</p></li>
+                  <li><span>03</span><p>Si hay un bloqueo que ya no debería existir, revísalo en SM12 junto con quien administre el sistema.</p></li>
+                </ol>
+              </div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · Snippets -->
+    <section class="seccion" id="snippets" data-tema="papel" aria-labelledby="snippets-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera seccion__cabecera--partida">
+          <div>
+            <p class="etiqueta">06 / Snippets</p>
+            <h2 id="snippets-titulo">Código que vas a <em class="clave">copiar mil veces</em></h2>
+          </div>
+          <p class="seccion__entradilla">Ocho fragmentos de ABAP moderno, cada uno con su equivalente en Java en la primera línea.</p>
+        </div>
+
+        <div class="snippets">
+          <div class="snippets__lista" role="tablist" aria-label="Snippets de ABAP" aria-orientation="vertical">
+            <button class="snippets__pestana" type="button" role="tab" id="sn-1-tab" aria-controls="sn-1" aria-selected="true"><span>01</span>Hola mundo en ABAP Cloud</button>
+            <button class="snippets__pestana" type="button" role="tab" id="sn-2-tab" aria-controls="sn-2" aria-selected="false" tabindex="-1"><span>02</span>Filtrar como un stream</button>
+            <button class="snippets__pestana" type="button" role="tab" id="sn-3-tab" aria-controls="sn-3" aria-selected="false" tabindex="-1"><span>03</span>Sumar con REDUCE</button>
+            <button class="snippets__pestana" type="button" role="tab" id="sn-4-tab" aria-controls="sn-4" aria-selected="false" tabindex="-1"><span>04</span>Agrupar con GROUP BY</button>
+            <button class="snippets__pestana" type="button" role="tab" id="sn-5-tab" aria-controls="sn-5" aria-selected="false" tabindex="-1"><span>05</span>Copiar estructuras</button>
+            <button class="snippets__pestana" type="button" role="tab" id="sn-6-tab" aria-controls="sn-6" aria-selected="false" tabindex="-1"><span>06</span>ALV en pocas líneas</button>
+            <button class="snippets__pestana" type="button" role="tab" id="sn-7-tab" aria-controls="sn-7" aria-selected="false" tabindex="-1"><span>07</span>Clase de test ABAP Unit</button>
+            <button class="snippets__pestana" type="button" role="tab" id="sn-8-tab" aria-controls="sn-8" aria-selected="false" tabindex="-1"><span>08</span>Excepciones propias</button>
+          </div>
+
+          <div class="snippets__paneles">
+            <div class="snippets__panel" role="tabpanel" id="sn-1" aria-labelledby="sn-1-tab" tabindex="0">
+              <p class="snippets__desc">El primer programa que vas a escribir en Eclipse. Se ejecuta con F9 y escribe en la consola de ADT.</p>
+              <div class="codigo">
+                <div class="codigo__barra"><span>zcl_hola.clas.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Java: public static void main(String[] args)
+CLASS zcl_hola DEFINITION PUBLIC FINAL CREATE PUBLIC.
+  PUBLIC SECTION.
+    INTERFACES if_oo_adt_classrun.
+ENDCLASS.
+
+CLASS zcl_hola IMPLEMENTATION.
+  METHOD if_oo_adt_classrun~main.
+    out-&gt;write( |Hola desde ABAP, { cl_abap_context_info=&gt;get_user_technical_name( ) }| ).
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+              </div>
+            </div>
+
+            <div class="snippets__panel" role="tabpanel" id="sn-2" aria-labelledby="sn-2-tab" tabindex="0">
+              <p class="snippets__desc">Crear una tabla nueva con las líneas que cumplen una condición, sin bucle ni APPEND.</p>
+              <div class="codigo">
+                <div class="codigo__barra"><span>filtrar.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Java: pedidos.stream().filter(p -&gt; p.getImporte() &gt; 1000).toList()
+DATA(lt_grandes) = VALUE tt_pedidos(
+  FOR ls_p IN lt_pedidos WHERE ( importe &gt; 1000 )
+  ( ls_p ) ).</code></pre>
+              </div>
+            </div>
+
+            <div class="snippets__panel" role="tabpanel" id="sn-3" aria-labelledby="sn-3-tab" tabindex="0">
+              <p class="snippets__desc">Acumular un valor recorriendo la tabla. REDUCE es el reduce de los streams.</p>
+              <div class="codigo">
+                <div class="codigo__barra"><span>sumar.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Java: pedidos.stream().map(Pedido::getImporte).reduce(BigDecimal.ZERO, BigDecimal::add)
+DATA(lv_total) = REDUCE decfloat34(
+  INIT suma = CONV decfloat34( 0 )
+  FOR ls_p IN lt_pedidos
+  NEXT suma = suma + ls_p-importe ).</code></pre>
+              </div>
+            </div>
+
+            <div class="snippets__panel" role="tabpanel" id="sn-4" aria-labelledby="sn-4-tab" tabindex="0">
+              <p class="snippets__desc">Recorrer la tabla por grupos y calcular un total por cliente.</p>
+              <div class="codigo">
+                <div class="codigo__barra"><span>agrupar.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Java: Collectors.groupingBy(Pedido::getCliente)
+LOOP AT lt_pedidos INTO DATA(ls_p)
+     GROUP BY ls_p-cliente_id INTO DATA(lv_cliente).
+
+  DATA(lv_suma) = REDUCE decfloat34(
+    INIT s = CONV decfloat34( 0 )
+    FOR ls_m IN GROUP lv_cliente
+    NEXT s = s + ls_m-importe ).
+
+  out-&gt;write( |Cliente { lv_cliente }: { lv_suma }| ).
+ENDLOOP.</code></pre>
+              </div>
+            </div>
+
+            <div class="snippets__panel" role="tabpanel" id="sn-5" aria-labelledby="sn-5-tab" tabindex="0">
+              <p class="snippets__desc">Pasar los datos de una estructura a otra por nombre de campo, renombrando o excluyendo los que haga falta.</p>
+              <div class="codigo">
+                <div class="codigo__barra"><span>mapear.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Java: MapStruct o BeanUtils.copyProperties
+DATA(ls_dto) = CORRESPONDING zs_pedido_dto( ls_pedido
+  MAPPING cliente = cliente_id
+  EXCEPT  importe_interno ).</code></pre>
+              </div>
+            </div>
+
+            <div class="snippets__panel" role="tabpanel" id="sn-6" aria-labelledby="sn-6-tab" tabindex="0">
+              <p class="snippets__desc">Un listado con ordenación, filtros y exportación a Excel en un informe clásico de SAP GUI.</p>
+              <div class="codigo">
+                <div class="codigo__barra"><span>zr_pedidos_alv.prog.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Java: una JTable con ordenación y filtros, pero ya hecha
+SELECT * FROM zpedidos INTO TABLE @DATA(lt_pedidos) UP TO 100 ROWS.
+
+TRY.
+    cl_salv_table=&gt;factory(
+      IMPORTING r_salv_table = DATA(lo_alv)
+      CHANGING  t_table      = lt_pedidos ).
+    lo_alv-&gt;get_functions( )-&gt;set_all( abap_true ).
+    lo_alv-&gt;display( ).
+  CATCH cx_salv_msg INTO DATA(lx_error).
+    MESSAGE lx_error TYPE 'E'.
+ENDTRY.</code></pre>
+              </div>
+            </div>
+
+            <div class="snippets__panel" role="tabpanel" id="sn-7" aria-labelledby="sn-7-tab" tabindex="0">
+              <p class="snippets__desc">La plantilla de una clase de test local. Se lanza con Ctrl + Mayús + F10 en ADT.</p>
+              <div class="codigo">
+                <div class="codigo__barra"><span>zcl_calculadora.testclasses.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Java: @Test void sumaDosNumeros() { assertEquals(5, calc.sumar(2, 3)); }
+CLASS ltc_calculadora DEFINITION FINAL FOR TESTING
+  DURATION SHORT RISK LEVEL HARMLESS.
+  PRIVATE SECTION.
+    DATA cut TYPE REF TO zcl_calculadora.
+    METHODS setup.
+    METHODS suma_dos_numeros FOR TESTING.
+ENDCLASS.
+
+CLASS ltc_calculadora IMPLEMENTATION.
+  METHOD setup.
+    cut = NEW #( ).
+  ENDMETHOD.
+
+  METHOD suma_dos_numeros.
+    cl_abap_unit_assert=&gt;assert_equals(
+      exp = 5
+      act = cut-&gt;sumar( a = 2 b = 3 ) ).
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+              </div>
+            </div>
+
+            <div class="snippets__panel" role="tabpanel" id="sn-8" aria-labelledby="sn-8-tab" tabindex="0">
+              <p class="snippets__desc">Capturar una excepción de clase y mostrar su texto. La clase se crea heredando de CX_STATIC_CHECK.</p>
+              <div class="codigo">
+                <div class="codigo__barra"><span>excepciones.abap</span><button class="codigo__copiar" type="button" data-copiar>Copiar</button></div>
+<pre translate="no"><code data-lenguaje="abap">" Java: try { ... } catch (PedidoNoValidoException e) { log(e.getMessage()); }
+TRY.
+    lo_pedidos-&gt;validar( ls_pedido ).
+  CATCH zcx_pedido_no_valido INTO DATA(lx_error).
+    out-&gt;write( lx_error-&gt;get_text( ) ).
+ENDTRY.</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · Ruta · scroll horizontal + línea que se dibuja -->
+    <section class="temario" id="ruta" data-tema="noche" aria-labelledby="ruta-titulo">
+      <div class="temario__fijo">
+        <div class="contenedor temario__cabecera">
+          <p class="etiqueta">07 / La ruta</p>
+          <h2 id="ruta-titulo">De cero a experto, <em class="clave">en cinco etapas</em></h2>
+        </div>
+        <div class="temario__ventana">
+          <svg class="temario__ruta" viewBox="0 0 1000 20" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 H1000" pathLength="1"/></svg>
+          <ol class="temario__pista">
+            <li class="hoja">
+              <p class="hoja__semanas">Etapa 01</p>
+              <p class="hoja__modulo">De cero a avanzado</p>
+              <h3 class="hoja__titulo">Fundamentos</h3>
+              <p class="hoja__contenidos">Sintaxis y tipos · declaraciones en línea · estructuras · tablas internas STANDARD, SORTED y HASHED · el depurador.</p>
+            </li>
+            <li class="hoja">
+              <p class="hoja__semanas">Etapa 02</p>
+              <p class="hoja__modulo">De cero a avanzado</p>
+              <h3 class="hoja__titulo">Datos</h3>
+              <p class="hoja__contenidos">Diccionario ABAP en SE11 · ABAP SQL moderno · JOIN y FOR ALL ENTRIES · primeras CDS View Entities.</p>
+            </li>
+            <li class="hoja">
+              <p class="hoja__semanas">Etapa 03</p>
+              <p class="hoja__modulo">De cero a avanzado</p>
+              <h3 class="hoja__titulo">Orientación a objetos</h3>
+              <p class="hoja__contenidos">Clases e interfaces · herencia · excepciones CX_ · patrones de diseño · ABAP Unit.</p>
+            </li>
+            <li class="hoja">
+              <p class="hoja__semanas">Etapa 04</p>
+              <p class="hoja__modulo">De avanzado a experto</p>
+              <h3 class="hoja__titulo">Informes e integración</h3>
+              <p class="hoja__contenidos">ALV con cl_salv_table · pantallas de selección · módulos de función y BAPIs · rendimiento con SAT y ST05.</p>
+            </li>
+            <li class="hoja hoja--final">
+              <p class="hoja__semanas">Etapa 05</p>
+              <p class="hoja__modulo">De avanzado a experto</p>
+              <h3 class="hoja__titulo">ABAP moderno</h3>
+              <p class="hoja__contenidos">RAP y ABAP Cloud · servicios OData V4 · Fiori Elements · abapGit · Clean ABAP.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 · Primera semana · calendario -->
+    <section class="seccion" id="primera-semana" data-tema="papel" aria-labelledby="semana-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera seccion__cabecera--partida">
+          <div>
+            <p class="etiqueta">08 / Tu primera semana</p>
+            <h2 id="semana-titulo">Siete días para <em class="clave">escribir tu primer ABAP</em></h2>
+          </div>
+          <p class="seccion__entradilla">Un plan realista para una hora al día. No necesitas licencia: todo se puede hacer con una cuenta de prueba gratuita de SAP.</p>
+        </div>
+        <ol class="semana revelar">
+          <li class="semana__dia"><p class="semana__nombre">Lun</p><p class="bloque bloque--directo"><strong>Entorno</strong><span>1 hora</span><span>Cuenta de prueba de SAP BTP y Eclipse con ADT.</span></p></li>
+          <li class="semana__dia"><p class="semana__nombre">Mar</p><p class="bloque bloque--reto"><strong>Sintaxis</strong><span>Tipos, variables y el snippet 01.</span></p></li>
+          <li class="semana__dia"><p class="semana__nombre">Mié</p><p class="bloque bloque--reto"><strong>Tablas internas</strong><span>LOOP, READ y los tres tipos.</span></p></li>
+          <li class="semana__dia"><p class="semana__nombre">Jue</p><p class="bloque bloque--reto"><strong>Datos</strong><span>Tu primera tabla y un SELECT.</span></p></li>
+          <li class="semana__dia"><p class="semana__nombre">Vie</p><p class="bloque bloque--reto"><strong>Objetos</strong><span>Una clase con su test.</span></p></li>
+          <li class="semana__dia"><p class="semana__nombre">Sáb</p><p class="bloque bloque--directo"><strong>Mini proyecto</strong><span>2 horas</span><span>Juntarlo todo: tabla, clase, test y salida por consola.</span></p></li>
+          <li class="semana__dia"><p class="semana__nombre">Dom</p><p class="bloque bloque--libre">Descanso y repaso de la chuleta de tipos</p></li>
+        </ol>
+        <p class="semana__discord"><span class="punto-vivo" aria-hidden="true"></span><strong>Consejo</strong> · una hora al día durante una semana enseña más que un maratón de un sábado</p>
+      </div>
+    </section>
+
+    <!-- 09 · Transacciones -->
+    <section class="seccion" id="transacciones" data-tema="noche" aria-labelledby="transacciones-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera seccion__cabecera--partida">
+          <div>
+            <p class="etiqueta">09 / Transacciones</p>
+            <h2 id="transacciones-titulo">Los atajos que vas a <em class="clave">teclear cada día</em></h2>
+          </div>
+          <p class="seccion__entradilla">Las transacciones son los accesos directos de SAP. Busca por código o por lo que quieres hacer y pulsa una para copiarla.</p>
+        </div>
+
+        <div class="buscador">
+          <label class="buscador__etiqueta" for="buscar-transaccion">Buscar transacción</label>
+          <input class="buscador__campo" id="buscar-transaccion" type="search" placeholder="Prueba con dump, tabla o transporte…" autocomplete="off" spellcheck="false">
+          <p class="buscador__cuenta" aria-live="polite"><span data-cuenta-tcodes>20</span> de 20</p>
+        </div>
+
+        <ul class="tcodes">
+          <li><button class="tcode" type="button" data-copiar="SE80" data-buscar="object navigator paquetes programas clases desarrollo"><span class="tcode__codigo">SE80</span><span class="tcode__nombre">Object Navigator</span><span class="tcode__texto">Paquetes, programas y clases en un solo árbol.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE38" data-buscar="editor programas informes ejecutar desarrollo"><span class="tcode__codigo">SE38</span><span class="tcode__nombre">Editor ABAP</span><span class="tcode__texto">Crear, editar y ejecutar programas.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE24" data-buscar="class builder clases interfaces objetos desarrollo"><span class="tcode__codigo">SE24</span><span class="tcode__nombre">Class Builder</span><span class="tcode__texto">Clases e interfaces globales.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE37" data-buscar="function builder modulos funcion bapi desarrollo"><span class="tcode__codigo">SE37</span><span class="tcode__nombre">Function Builder</span><span class="tcode__texto">Módulos de función: probarlos y leer su firma.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE11" data-buscar="diccionario tabla estructura elemento datos dominio"><span class="tcode__codigo">SE11</span><span class="tcode__nombre">Diccionario ABAP</span><span class="tcode__texto">Tablas, estructuras, elementos de datos y dominios.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE16N" data-buscar="visor tabla datos consultar contenido"><span class="tcode__codigo">SE16N</span><span class="tcode__nombre">Visor de tablas</span><span class="tcode__texto">Consultar el contenido de cualquier tabla.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SM30" data-buscar="mantenimiento tabla vista actualizacion datos"><span class="tcode__codigo">SM30</span><span class="tcode__nombre">Mantenimiento de tablas</span><span class="tcode__texto">Editar tablas que tienen vista de actualización.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="ST22" data-buscar="dump volcado error ejecucion excepcion"><span class="tcode__codigo">ST22</span><span class="tcode__nombre">Análisis de dumps</span><span class="tcode__texto">Ver por qué y dónde ha fallado un programa.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SM12" data-buscar="bloqueo lock enqueue objeto bloqueado"><span class="tcode__codigo">SM12</span><span class="tcode__nombre">Entradas de bloqueo</span><span class="tcode__texto">Quién tiene bloqueado qué.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE09" data-buscar="transporte orden liberar transport organizer"><span class="tcode__codigo">SE09</span><span class="tcode__nombre">Transport Organizer</span><span class="tcode__texto">Tus órdenes de transporte: crearlas, revisarlas y liberarlas.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE91" data-buscar="mensajes clase message textos"><span class="tcode__codigo">SE91</span><span class="tcode__nombre">Mensajes</span><span class="tcode__texto">Clases de mensajes y sus textos.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE93" data-buscar="transaccion crear codigo propio"><span class="tcode__codigo">SE93</span><span class="tcode__nombre">Transacciones</span><span class="tcode__texto">Crear tus propios códigos de transacción.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SAT" data-buscar="rendimiento analisis ejecucion tiempo lento"><span class="tcode__codigo">SAT</span><span class="tcode__nombre">Análisis de ejecución</span><span class="tcode__texto">Dónde se va el tiempo de un programa lento.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="ST05" data-buscar="traza sql rendimiento consultas base datos lento"><span class="tcode__codigo">ST05</span><span class="tcode__nombre">Trazas SQL</span><span class="tcode__texto">Qué consultas lanza tu código y cuánto tardan.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SLIN" data-buscar="chequeo ampliado revision estatica calidad"><span class="tcode__codigo">SLIN</span><span class="tcode__nombre">Chequeo ampliado</span><span class="tcode__texto">Revisión estática del código de un programa.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="ATC" data-buscar="abap test cockpit calidad tests unit revision"><span class="tcode__codigo">ATC</span><span class="tcode__nombre">ABAP Test Cockpit</span><span class="tcode__texto">Calidad de código y tests unitarios en bloque.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE19" data-buscar="badi ampliacion implementar enhancement"><span class="tcode__codigo">SE19</span><span class="tcode__nombre">Implementar BAdIs</span><span class="tcode__texto">Ampliar el estándar sin modificarlo.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SM37" data-buscar="jobs trabajos fondo background planificados"><span class="tcode__codigo">SM37</span><span class="tcode__nombre">Jobs</span><span class="tcode__texto">Trabajos en fondo: estado, logs y resultados.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="BAPI" data-buscar="bapi explorador integracion interfaz"><span class="tcode__codigo">BAPI</span><span class="tcode__nombre">Explorador de BAPIs</span><span class="tcode__texto">Las interfaces oficiales de cada objeto de negocio.</span></button></li>
+          <li><button class="tcode" type="button" data-copiar="SE84" data-buscar="sistema informacion buscar objetos repositorio"><span class="tcode__codigo">SE84</span><span class="tcode__nombre">Sistema de información</span><span class="tcode__texto">Buscar cualquier objeto del repositorio.</span></button></li>
+        </ul>
+        <p class="tcodes__vacio" hidden>Ninguna transacción coincide. Prueba con otra palabra.</p>
+      </div>
+    </section>
+
+    <!-- 10 · Test de nivel -->
+    <section class="seccion" id="test" data-tema="papel" aria-labelledby="test-titulo">
+      <div class="contenedor encaje">
+        <div class="encaje__intro">
+          <p class="etiqueta">10 / Test de nivel</p>
+          <h2 id="test-titulo">¿Cuánto ABAP <em class="clave">sabes ya?</em></h2>
+          <div class="criterios">
+            <div class="criterio criterio--si">
+              <h3 class="criterio__titulo">Esta guía es para ti si</h3>
+              <ul class="criterio__lista">
+                <li><span class="criterio__glifo" aria-hidden="true">✓</span><span>Programas en Java o en C# y te pica la curiosidad por SAP.</span></li>
+                <li><span class="criterio__glifo" aria-hidden="true">✓</span><span>Acabas de entrar en un proyecto SAP y todo te suena raro.</span></li>
+                <li><span class="criterio__glifo" aria-hidden="true">✓</span><span>Ya haces ABAP y quieres una chuleta a mano.</span></li>
+              </ul>
+            </div>
+            <div class="criterio criterio--no">
+              <h3 class="criterio__titulo">No lo es si</h3>
+              <ul class="criterio__lista">
+                <li><span class="criterio__glifo" aria-hidden="true">×</span><span>Buscas SAP funcional (FI, MM, SD) sin escribir código.</span></li>
+                <li><span class="criterio__glifo" aria-hidden="true">×</span><span>Esperas una certificación: esto es una guía, no un curso.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="test" data-test>
+          <div class="test__barra-ventana" aria-hidden="true"><span></span><span></span><span></span><p>nivel.abap</p></div>
+          <div class="test__cuerpo">
+            <p class="test__titulo">Test de nivel <span>5 preguntas · 1 minuto</span></p>
+            <form class="test__form" novalidate>
+              <fieldset class="test__paso" data-paso="0" data-explicacion="READ TABLE deja SY-SUBRC a 4 cuando no encuentra la línea. 0 significa éxito.">
+                <legend>Tras un READ TABLE que no encuentra la línea, SY-SUBRC vale…</legend>
+                <label class="opcion"><input type="radio" name="t-1" value="0"><span>0</span></label>
+                <label class="opcion"><input type="radio" name="t-1" value="1"><span>4</span></label>
+                <label class="opcion"><input type="radio" name="t-1" value="0"><span>8</span></label>
+              </fieldset>
+              <fieldset class="test__paso" data-paso="1" data-explicacion="IS BOUND comprueba que una referencia apunta a un objeto. IS INITIAL es para variables normales.">
+                <legend>¿Cómo compruebas que una referencia a objeto está instanciada?</legend>
+                <label class="opcion"><input type="radio" name="t-2" value="0"><span>IS INITIAL</span></label>
+                <label class="opcion"><input type="radio" name="t-2" value="1"><span>IS BOUND</span></label>
+                <label class="opcion"><input type="radio" name="t-2" value="0"><span>IS NOT NULL</span></label>
+              </fieldset>
+              <fieldset class="test__paso" data-paso="2" data-explicacion="Con la tabla vacía, FOR ALL ENTRIES ignora el WHERE y lee todos los registros. Compruébala siempre antes.">
+                <legend>Si la tabla de FOR ALL ENTRIES está vacía, el SELECT…</legend>
+                <label class="opcion"><input type="radio" name="t-3" value="0"><span>No devuelve nada</span></label>
+                <label class="opcion"><input type="radio" name="t-3" value="1"><span>Devuelve todos los registros</span></label>
+                <label class="opcion"><input type="radio" name="t-3" value="0"><span>Da un dump</span></label>
+              </fieldset>
+              <fieldset class="test__paso" data-paso="3" data-explicacion="Para importes se usa el tipo p con decimales o decfloat34. El tipo f es coma flotante y pierde céntimos.">
+                <legend>¿Qué tipo usarías para un importe en euros?</legend>
+                <label class="opcion"><input type="radio" name="t-4" value="0"><span>f</span></label>
+                <label class="opcion"><input type="radio" name="t-4" value="1"><span>p LENGTH 15 DECIMALS 2</span></label>
+                <label class="opcion"><input type="radio" name="t-4" value="0"><span>i</span></label>
+              </fieldset>
+              <fieldset class="test__paso" data-paso="4" data-explicacion="Ctrl + F3 activa el objeto. Guardar no basta para que el sistema use tus cambios.">
+                <legend>¿Qué hace Ctrl + F3 en Eclipse ADT?</legend>
+                <label class="opcion"><input type="radio" name="t-5" value="0"><span>Guardar</span></label>
+                <label class="opcion"><input type="radio" name="t-5" value="1"><span>Activar</span></label>
+                <label class="opcion"><input type="radio" name="t-5" value="0"><span>Ejecutar</span></label>
+              </fieldset>
+              <button class="boton boton--secundario test__siguiente" type="submit">Siguiente <span class="boton__flecha" aria-hidden="true">→</span></button>
+            </form>
+            <div class="test__resultado" hidden tabindex="-1">
+              <p class="test__nota"></p>
+              <p class="test__veredicto"></p>
+              <p class="test__explicacion"></p>
+              <ul class="test__correcciones"></ul>
+              <div class="test__acciones">
+                <a class="boton boton--primario" href="#traduccion" data-test-cta>Ir a la guía <span class="boton__flecha" aria-hidden="true">→</span></a>
+                <button class="boton boton--secundario" type="button" data-test-reiniciar>Repetir</button>
+              </div>
+            </div>
+            <div class="test__pie" aria-hidden="true"><span class="test__contador">1/5</span><span class="test__progreso"><span></span></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · Transporte DEV → QAS → PRD -->
+    <section class="seccion" id="transporte" data-tema="noche" aria-labelledby="transporte-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera seccion__cabecera--partida">
+          <div>
+            <p class="etiqueta">11 / Cómo viaja tu código</p>
+            <h2 id="transporte-titulo">No hay git push. Hay <em class="clave">órdenes de transporte.</em></h2>
+          </div>
+          <p class="seccion__entradilla">En Java haces push y el pipeline despliega. En SAP el código viaja dentro de órdenes de transporte por un paisaje de sistemas. Es lo primero que choca.</p>
+        </div>
+        <div class="transporte">
+          <svg class="transporte__ruta transporte__ruta--h" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+            <path class="transporte__base" d="M20 20 H980" pathLength="1"/>
+            <path class="transporte__trazo" d="M20 20 H980" pathLength="1"/>
+          </svg>
+          <svg class="transporte__ruta transporte__ruta--v" viewBox="0 0 40 1000" preserveAspectRatio="none" aria-hidden="true">
+            <path class="transporte__base" d="M20 0 V1000" pathLength="1"/>
+            <path class="transporte__trazo" d="M20 0 V1000" pathLength="1"/>
+          </svg>
+          <ol class="pasos">
+            <li class="paso">
+              <p class="paso__sistema" aria-hidden="true">DEV</p>
+              <h3 class="paso__titulo">Desarrollo</h3>
+              <p>Programas y activas. Cada cambio queda registrado en una orden de transporte que ves en SE09. Cuando está lista, la liberas.</p>
+            </li>
+            <li class="paso">
+              <p class="paso__sistema" aria-hidden="true">QAS</p>
+              <h3 class="paso__titulo">Calidad</h3>
+              <p>La orden se importa en un sistema de pruebas con datos parecidos a los reales. Aquí se valida antes de seguir.</p>
+            </li>
+            <li class="paso">
+              <p class="paso__sistema" aria-hidden="true">PRD</p>
+              <h3 class="paso__titulo">Producción</h3>
+              <p>Aquí no se programa. Solo llega lo que ha pasado por DEV y QAS, en el mismo orden en que se liberó.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 · Proyectos para practicar · contadores + tarjetas apiladas -->
+    <section class="seccion" id="proyectos" data-tema="papel" aria-labelledby="proyectos-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera">
+          <p class="etiqueta">12 / Para practicar</p>
+          <h2 id="proyectos-titulo">Lee menos. <em class="clave">Construye más.</em></h2>
+        </div>
+        <ul class="cifras">
+          <li class="cifra"><span class="cifra__valor" data-contar="12">12</span><span class="cifra__pie">equivalencias entre Java y ABAP en esta guía</span></li>
+          <li class="cifra"><span class="cifra__valor" data-contar="8">8</span><span class="cifra__pie">errores típicos explicados y resueltos</span></li>
+          <li class="cifra"><span class="cifra__valor" data-contar="20">20</span><span class="cifra__pie">transacciones de uso diario</span></li>
+        </ul>
+        <div class="pila">
+          <article class="proyecto">
+            <span class="proyecto__num" aria-hidden="true">Proyecto 01/03</span>
+            <div class="proyecto__cuerpo">
+              <h3 class="proyecto__titulo">Gestor de pedidos con RAP</h3>
+              <p class="proyecto__texto">Una tabla en el diccionario, una CDS View Entity encima, un comportamiento con validaciones y un servicio OData V4 que puedes abrir en Fiori Elements. Es el Spring Boot de ABAP de principio a fin.</p>
+            </div>
+            <p class="proyecto__etiquetas">RAP · CDS · OData V4 · Fiori Elements</p>
+          </article>
+          <article class="proyecto">
+            <span class="proyecto__num" aria-hidden="true">Proyecto 02/03</span>
+            <div class="proyecto__cuerpo">
+              <h3 class="proyecto__titulo">Informe de ventas con ALV</h3>
+              <p class="proyecto__texto">Pantalla de selección con fechas y cliente, un SELECT con JOIN, totales por cliente con GROUP BY y un ALV con exportación a Excel. Es el tipo de encargo que llega la primera semana.</p>
+            </div>
+            <p class="proyecto__etiquetas">ABAP SQL · GROUP BY · cl_salv_table</p>
+          </article>
+          <article class="proyecto">
+            <span class="proyecto__num" aria-hidden="true">Proyecto 03/03</span>
+            <div class="proyecto__cuerpo">
+              <h3 class="proyecto__titulo">Tests para código heredado</h3>
+              <p class="proyecto__texto">Coge un programa antiguo, saca la lógica a una clase y cúbrela con ABAP Unit antes de tocar nada. En la vida real vas a mantener más código del que escribes.</p>
+            </div>
+            <p class="proyecto__etiquetas">ABAP Unit · refactorización · Clean ABAP</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · Quién escribe · revelado con máscara -->
+    <section class="seccion" id="autor" data-tema="noche" aria-labelledby="autor-titulo">
+      <div class="contenedor profesora">
+        <figure class="profesora__retrato" data-mascara>
+          <img src="assets/autor.svg" alt="Monograma de Abel, autor de la guía" width="480" height="600" loading="lazy">
+          <figcaption class="profesora__pie">Java → ABAP</figcaption>
+        </figure>
+        <div class="profesora__texto">
+          <p class="etiqueta">13 / Quién escribe esto</p>
+          <h2 id="autor-titulo">Abel</h2>
+          <p class="profesora__cargo">Java por formación · ABAP por elección</p>
+          <blockquote class="profesora__cita">
+            <p>“Escribí la guía que me habría ahorrado semanas cuando pasé de Java a ABAP.”</p>
+          </blockquote>
+          <p class="profesora__bio">Estudié Desarrollo de Aplicaciones Multiplataforma, donde Java fue el lenguaje principal. Después me formé en SAP ABAP en dos etapas, de cero a avanzado y de avanzado a experto. Esta página reúne lo que más me costó entender por el camino, explicado desde Java.</p>
+          <ul class="lista-flecha">
+            <li><span class="lista-flecha__glifo" aria-hidden="true">=&gt;</span><span>Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)</span></li>
+            <li><span class="lista-flecha__glifo" aria-hidden="true">=&gt;</span><span>Formación SAP ABAP: de cero a avanzado</span></li>
+            <li><span class="lista-flecha__glifo" aria-hidden="true">=&gt;</span><span>Formación SAP ABAP: de avanzado a experto</span></li>
+          </ul>
+          <a class="boton boton--primario profesora__cta" href="https://www.linkedin.com/in/abel-gonzalez-guerra/" target="_blank" rel="noopener" data-magnetico>Conecta conmigo en LinkedIn <span class="boton__flecha" aria-hidden="true">↗</span><span class="visualmente-oculto"> (se abre en otra pestaña)</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 · Preguntas -->
+    <section class="seccion" id="preguntas" data-tema="papel" aria-labelledby="preguntas-titulo">
+      <div class="contenedor preguntas">
+        <div class="preguntas__cabecera">
+          <p class="etiqueta">14 / Preguntas</p>
+          <h2 id="preguntas-titulo">Lo que pregunta todo <em class="clave">programador Java</em></h2>
+        </div>
+        <div class="acordeon">
+          <div class="acordeon__item">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="faq-1-boton" type="button" aria-expanded="false" aria-controls="faq-1"><span class="acordeon__num" aria-hidden="true">01</span><span class="acordeon__pregunta">¿ABAP no está muerto?</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="faq-1" role="region" aria-labelledby="faq-1-boton"><div class="acordeon__contenido"><p>No. Es el lenguaje de SAP S/4HANA y de ABAP Cloud en SAP BTP, y las migraciones desde ECC mantienen la demanda de gente que lo programe.</p></div></div>
+          </div>
+          <div class="acordeon__item">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="faq-2-boton" type="button" aria-expanded="false" aria-controls="faq-2"><span class="acordeon__num" aria-hidden="true">02</span><span class="acordeon__pregunta">¿Necesito una licencia para practicar?</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="faq-2" role="region" aria-labelledby="faq-2-boton"><div class="acordeon__contenido"><p>No. SAP ofrece una cuenta de prueba gratuita de SAP BTP con entorno ABAP, y también ABAP Platform Trial para instalar un sistema en local.</p></div></div>
+          </div>
+          <div class="acordeon__item">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="faq-3-boton" type="button" aria-expanded="false" aria-controls="faq-3"><span class="acordeon__num" aria-hidden="true">03</span><span class="acordeon__pregunta">¿Eclipse (ADT) o SAP GUI?</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="faq-3" role="region" aria-labelledby="faq-3-boton"><div class="acordeon__contenido"><p>ADT para programar: es lo moderno y lo único disponible en ABAP Cloud. SAP GUI lo seguirás usando en sistemas clásicos y para muchas transacciones.</p></div></div>
+          </div>
+          <div class="acordeon__item">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="faq-4-boton" type="button" aria-expanded="false" aria-controls="faq-4"><span class="acordeon__num" aria-hidden="true">04</span><span class="acordeon__pregunta">¿Hay null en ABAP?</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="faq-4" role="region" aria-labelledby="faq-4-boton"><div class="acordeon__contenido"><p>No como en Java. Cada variable nace con su valor inicial (cero, espacios o una fecha vacía) y se comprueba con IS INITIAL. Las referencias sí pueden no apuntar a nada, y eso se comprueba con IS BOUND.</p></div></div>
+          </div>
+          <div class="acordeon__item">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="faq-5-boton" type="button" aria-expanded="false" aria-controls="faq-5"><span class="acordeon__num" aria-hidden="true">05</span><span class="acordeon__pregunta">¿Hay genéricos?</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="faq-5" role="region" aria-labelledby="faq-5-boton"><div class="acordeon__contenido"><p>No como los de Java. Para parámetros flexibles se usan tipos genéricos como TYPE any o TYPE ANY TABLE, y referencias a datos con REF TO data.</p></div></div>
+          </div>
+          <div class="acordeon__item">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="faq-6-boton" type="button" aria-expanded="false" aria-controls="faq-6"><span class="acordeon__num" aria-hidden="true">06</span><span class="acordeon__pregunta">¿Distingue mayúsculas y minúsculas?</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="faq-6" role="region" aria-labelledby="faq-6-boton"><div class="acordeon__contenido"><p>Las palabras clave y los nombres no; los literales de texto sí. Muchos equipos escriben las palabras clave en mayúsculas, y el formateador de ADT (Mayús + F1) lo deja todo uniforme.</p></div></div>
+          </div>
+          <div class="acordeon__item">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="faq-7-boton" type="button" aria-expanded="false" aria-controls="faq-7"><span class="acordeon__num" aria-hidden="true">07</span><span class="acordeon__pregunta">¿Cómo depuro?</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="faq-7" role="region" aria-labelledby="faq-7-boton"><div class="acordeon__contenido"><p>En ADT, con puntos de interrupción como en cualquier IDE. En SAP GUI, escribiendo /h en la barra de comandos antes de ejecutar.</p></div></div>
+          </div>
+          <div class="acordeon__item">
+            <h3 class="acordeon__titulo"><button class="acordeon__boton" id="faq-8-boton" type="button" aria-expanded="false" aria-controls="faq-8"><span class="acordeon__num" aria-hidden="true">08</span><span class="acordeon__pregunta">¿Hay recolector de basura?</span><span class="acordeon__signo" aria-hidden="true">+</span></button></h3>
+            <div class="acordeon__panel" id="faq-8" role="region" aria-labelledby="faq-8-boton"><div class="acordeon__contenido"><p>Sí. Los objetos que ya no tienen referencias se liberan solos, igual que en Java.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 · Compartir -->
+    <section class="seccion compartir" id="compartir" data-tema="noche" aria-labelledby="compartir-titulo">
+      <div class="contenedor compartir__caja">
+        <p class="etiqueta">15 / Compartir</p>
+        <h2 id="compartir-titulo" class="compartir__titulo">¿Te ha servido? <em class="clave">Pásasela</em> a quien venga de Java.</h2>
+        <p class="compartir__texto">Esta guía es gratis y sin registro. Si conoces a alguien que acaba de caer en un proyecto SAP, le vas a ahorrar unas cuantas horas de dumps.</p>
+        <div class="compartir__acciones">
+          <a class="boton boton--primario" href="https://www.linkedin.com/" target="_blank" rel="noopener" data-compartir-linkedin data-magnetico>Compartir en LinkedIn <span class="boton__flecha" aria-hidden="true">↗</span><span class="visualmente-oculto"> (se abre en otra pestaña)</span></a>
+          <button class="boton boton--secundario" type="button" data-copiar-enlace data-magnetico>Copiar enlace</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie" data-tema="noche">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div class="pie__marca">
+          <p class="pie__lema">De Java a ABAP, <em class="clave">línea a línea</em>.</p>
+          <a class="boton boton--primario" href="#inicio" data-magnetico>Volver arriba <span class="boton__flecha" aria-hidden="true">↑</span></a>
+        </div>
+        <div>
+          <h2 class="pie__titulo">Guía</h2>
+          <ul class="pie__lista">
+            <li><a href="#traduccion">La traducción</a></li>
+            <li><a href="#mapa">Equivalencias</a></li>
+            <li><a href="#tipos">Chuleta de tipos</a></li>
+            <li><a href="#errores">Errores típicos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="pie__titulo">Practicar</h2>
+          <ul class="pie__lista">
+            <li><a href="#snippets">Snippets</a></li>
+            <li><a href="#transacciones">Transacciones</a></li>
+            <li><a href="#ruta">La ruta</a></li>
+            <li><a href="#test">Test de nivel</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="pie__titulo">Autor</h2>
+          <ul class="pie__lista">
+            <li><a href="#autor">Quién escribe esto</a></li>
+            <li><a href="https://www.linkedin.com/in/abel-gonzalez-guerra/" target="_blank" rel="noopener">LinkedIn<span class="visualmente-oculto"> (se abre en otra pestaña)</span></a></li>
+            <li><a href="#compartir">Compartir la guía</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="pie__gigante" translate="no" aria-hidden="true" data-fuente-variable>transporta<span>.</span></p>
+      <div class="pie__legal">
+        <p>Guía personal y gratuita. Sin cookies, sin registro y sin seguimiento.</p>
+        <p>SAP, ABAP y S/4HANA son marcas registradas de SAP SE. Java es una marca registrada de Oracle. Este proyecto no está afiliado a ninguna de las dos empresas.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" data-toast role="status" aria-live="polite" aria-atomic="true">
+    <p class="toast__mensaje"></p>
+    <button class="toast__cerrar" type="button" aria-label="Cerrar aviso">×</button>
+  </div>
+</body>
+</html>
