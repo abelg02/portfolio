@@ -2,10 +2,11 @@ import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { findProject } from '../data/projects';
 import { prefersReducedMotion } from '../lib/motion';
+import { asset } from '../lib/base';
 import styles from './Backdrop.module.css';
 
-const SRC_LARGE = '/media/fondo/obsidiana.webp';
-const SRC_SMALL = '/media/fondo/obsidiana-sm.webp';
+const SRC_LARGE = asset('media/fondo/obsidiana.webp');
+const SRC_SMALL = asset('media/fondo/obsidiana-sm.webp');
 
 const VERT = `attribute vec2 p; varying vec2 v; void main(){ v = p * 0.5 + 0.5; v.y = 1.0 - v.y; gl_Position = vec4(p, 0.0, 1.0); }`;
 

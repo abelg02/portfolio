@@ -9,7 +9,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { projects } from '../src/data/projects.ts';
 
-const SITE = 'https://abelg02.github.io';
+const SITE = 'https://abelg02.github.io/portfolio';
 const dist = new URL('../dist/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 const base = readFileSync(join(dist, 'index.html'), 'utf8');
 

@@ -69,7 +69,9 @@ export interface Project {
   strip?: { title: string; caption: string; images: Media[] };
 }
 
-const m = (slug: string, file: string) => `/media/${slug}/${file}`;
+// También lo importa scripts/postbuild.mjs desde Node, donde no existe import.meta.env
+const BASE: string = import.meta.env?.BASE_URL ?? '/';
+const m = (slug: string, file: string) => `${BASE}media/${slug}/${file}`;
 
 export const projects: Project[] = [
   {

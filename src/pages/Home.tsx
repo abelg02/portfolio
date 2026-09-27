@@ -7,6 +7,7 @@ import { ProjectStack } from '../components/ProjectStack';
 import { WorkIndex } from '../components/WorkIndex';
 import { liveCount, projects, technologies } from '../data/projects';
 import { site } from '../data/site';
+import { asset } from '../lib/base';
 import { scrollToTarget } from '../lib/motion';
 import styles from './Home.module.css';
 
@@ -29,13 +30,13 @@ export function Home() {
               <span className={styles.line}>
                 <span>Diseño y programo</span>
                 <span className={styles.pill} aria-hidden="true">
-                  <video src="/media/calipro/recorrido.mp4" poster="/media/calipro/recorrido-poster.jpg" muted loop autoPlay playsInline disablePictureInPicture disableRemotePlayback preload="metadata" />
+                  <video src={asset('media/calipro/recorrido.mp4')} poster={asset('media/calipro/recorrido-poster.jpg')} muted loop autoPlay playsInline disablePictureInPicture disableRemotePlayback preload="metadata" />
                 </span>
               </span>
               <span className={styles.line}>
                 <em>webs, apps</em>
                 <span className={`${styles.pill} ${styles.pillWide}`} aria-hidden="true">
-                  <img src="/media/climax/portada.webp" alt="" />
+                  <img src={asset('media/climax/portada.webp')} alt="" />
                 </span>
               </span>
               <span className={styles.line}>y software de empresa.</span>

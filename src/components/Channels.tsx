@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import type { Channel } from '../data/projects';
 import { ArrowUpRight, CHANNEL_ICON, Clock, Lock } from './Icons';
+import { BASE, asset } from '../lib/base';
 import styles from './Channels.module.css';
 
 const STATUS_TEXT = { soon: 'Próximamente', private: 'Privado', live: '' };
 
-const host = (href: string) => (href.startsWith('/') ? `abelg02.github.io${href}` : href.replace(/^https?:\/\//, '').replace(/\/$/, ''));
+const host = (href: string) => (href.startsWith('/') ? `abelg02.github.io${BASE}${href.slice(1)}` : href.replace(/^https?:\/\//, '').replace(/\/$/, ''));
 
 /** Iconos pequeños de los canales disponibles (tarjetas e índice). */
 export function ChannelIcons({ channels }: { channels: Channel[] }) {
@@ -63,7 +64,7 @@ export function ChannelButtons({ channels }: { channels: Channel[] }) {
                   {inner}
                 </Link>
               ) : (
-                <a href={c.href} target={c.href.startsWith('/') ? undefined : '_blank'} rel="noreferrer" className={styles.button}>
+                <a href={c.href.startsWith('/') ? asset(c.href) : c.href} target={c.href.startsWith('/') ? undefined : '_blank'} rel="noreferrer" className={styles.button}>
                   {inner}
                 </a>
               )

@@ -4,7 +4,7 @@ export const site = {
   name: 'Abel González',
   fullName: 'Abel González Guerra',
   role: 'Desarrollador full-stack y SAP ABAP Cloud',
-  url: 'https://abelg02.github.io',
+  url: 'https://abelg02.github.io/portfolio',
   intro:
     'Construyo productos completos: la interfaz que usa la gente, el servidor que la sostiene y, cuando hace falta, el código dentro de SAP. Me gusta que cada proyecto se pueda probar, no solo mirar.',
   links: {
