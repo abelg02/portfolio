@@ -7,10 +7,11 @@
  */
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { projects } from '../src/data/projects.ts';
 
 const SITE = 'https://abelg02.github.io/portfolio';
-const dist = new URL('../dist/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+const dist = fileURLToPath(new URL('../dist/', import.meta.url));
 const base = readFileSync(join(dist, 'index.html'), 'utf8');
 
 const escape = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
