@@ -245,9 +245,15 @@ export const projects: Project[] = [
     ],
     stack: ['HTML', 'CSS', 'JavaScript', 'Canvas'],
     channels: [
-      { kind: 'web', label: 'Leer la guía', href: '/transporta/', status: 'live' },
+      { kind: 'web', label: 'Leer la guía', href: 'https://abelg02.github.io/Guia-Java-a-ABAP/', status: 'live' },
+      { kind: 'code', label: 'Código', href: 'https://github.com/abelg02/Guia-Java-a-ABAP', status: 'live' },
     ],
-    gallery: [{ type: 'image', src: m('transporta', 'inicio.webp'), alt: 'Portada de Transporta' }],
+    gallery: [
+      { type: 'image', src: m('transporta', 'inicio.webp'), alt: 'Portada de Transporta' },
+      { type: 'image', src: m('transporta', 'traduccion.webp'), alt: 'Un programa Java reescrito línea a línea en ABAP' },
+      { type: 'image', src: m('transporta', 'equivalencias.webp'), alt: 'Equivalencias entre tecnologías Java y ABAP' },
+      { type: 'image', src: m('transporta', 'errores.webp'), alt: 'Errores típicos de ABAP con su solución' },
+    ],
   },
   {
     slug: 'sap-abap-cloud',
